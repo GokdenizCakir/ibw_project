@@ -38,7 +38,7 @@ const page = () => {
   };
 
   useEffect(() => {
-    const getPool = async () => {
+    const getFunc = async () => {
       try {
         const contract = new ethers.Contract(
           contractAddress,
@@ -46,13 +46,13 @@ const page = () => {
           signer
         );
 
-        contract.getPool(1)
+        const tx = await contract.getPool(0);
         await tx.wait();
       } catch (error) {
         console.error('Error:', error);
       }
     };
-    getPool();
+    getFunc();
 
     const getProject = async () => {
       const res = await fetch(

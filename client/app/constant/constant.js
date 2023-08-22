@@ -128,6 +128,44 @@ export const contractABI = [
   {
     inputs: [
       {
+        internalType: 'uint256',
+        name: '_index',
+        type: 'uint256',
+      },
+    ],
+    name: 'getPoolFinish',
+    outputs: [
+      {
+        internalType: 'uint256',
+        name: '',
+        type: 'uint256',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'uint256',
+        name: '_index',
+        type: 'uint256',
+      },
+    ],
+    name: 'getPoolLiq',
+    outputs: [
+      {
+        internalType: 'uint256',
+        name: '',
+        type: 'uint256',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
         components: [
           {
             internalType: 'address',

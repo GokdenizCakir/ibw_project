@@ -15,7 +15,7 @@ exports.getAllProjects = async (req, res, next) => {
 
 exports.getProject = async (req, res, next) => {
   const { projectID } = req.params;
-  const project = await Project.findById(projectID);
+  const project = await Project.findOne({ incrementId: projectID });
 
   if (!project) return next(new AppError(404, 'Project not found'));
 
@@ -35,7 +35,7 @@ exports.createProject = async (req, res, next) => {
       new AppError(400, 'Please provide your name, description and public key')
     );
 
-  const project = await Project.create({
+  const project = new Project({
     name,
     description,
     publicKey,
@@ -43,6 +43,8 @@ exports.createProject = async (req, res, next) => {
     twitter,
     linkedin,
   });
+
+  await project.save();
 
   res.status(201).json({
     message: 'Project created',

@@ -12,6 +12,27 @@ const page = () => {
   const [number, setNumber] = useState('');
   const signer = useRecoilValue(signerState);
   const [loading, setLoading] = useState(false);
+  const [loadingWithdraw, setLoadingWithdraw] = useState(false);
+
+  const handleWithdraw = async () => {
+    setLoadingWithdraw(true);
+    try {
+      const contract = new ethers.Contract(
+        contractAddress,
+        contractABI,
+        signer
+      );
+
+      const tx = await contract.withdrawContribution(projectID - 1);
+      await tx.wait();
+
+      console.log(tx);
+    } catch (error) {
+      console.error('Error:', error);
+    } finally {
+      setLoadingWithdraw(false);
+    }
+  };
 
   const handleClick = async () => {
     setLoading(true);
@@ -24,7 +45,7 @@ const page = () => {
 
       // Sending a donation transaction with value in Ether
       const valueInEther = ethers.parseEther(number);
-      const tx = await contract.contribute(0, valueInEther, {
+      const tx = await contract.contribute(projectID - 1, {
         value: valueInEther,
       });
       await tx.wait();
@@ -97,6 +118,17 @@ const page = () => {
               className='bg-customLightGreen w-60 py-1 rounded-lg'
             >
               Donate
+            </button>
+          )}
+
+          {loadingWithdraw ? (
+            <div>loading...</div>
+          ) : (
+            <button
+              onClick={handleWithdraw}
+              className='bg-red-500 mt-4 w-60 py-1 rounded-lg'
+            >
+              Withdraw
             </button>
           )}
         </div>

@@ -1,29 +1,10 @@
-export const contractAddress = '0x5FbDB2315678afecb367f032d93F642f64180aa3';
+export const contractAddress = '0x1AC62eE0E6C58880f7bAa22204709b90ac34Ab4d';
 
 export const contractABI = [
   {
     inputs: [],
     stateMutability: 'nonpayable',
     type: 'constructor',
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: false,
-        internalType: 'uint256',
-        name: 'amount',
-        type: 'uint256',
-      },
-      {
-        indexed: false,
-        internalType: 'uint256',
-        name: 'when',
-        type: 'uint256',
-      },
-    ],
-    name: 'Withdrawal',
-    type: 'event',
   },
   {
     inputs: [],
@@ -45,11 +26,6 @@ export const contractABI = [
         name: '_poolId',
         type: 'uint256',
       },
-      {
-        internalType: 'uint256',
-        name: 'amount',
-        type: 'uint256',
-      },
     ],
     name: 'contribute',
     outputs: [],
@@ -57,102 +33,28 @@ export const contractABI = [
     type: 'function',
   },
   {
-    inputs: [
+    inputs: [],
+    name: 'contributorIndex',
+    outputs: [
       {
         internalType: 'uint256',
-        name: '_maxLiquidity',
-        type: 'uint256',
-      },
-      {
-        internalType: 'uint256',
-        name: '_duration',
+        name: '',
         type: 'uint256',
       },
     ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [],
     name: 'createPool',
     outputs: [],
     stateMutability: 'nonpayable',
     type: 'function',
   },
   {
-    inputs: [
-      {
-        internalType: 'uint256',
-        name: '_index',
-        type: 'uint256',
-      },
-    ],
-    name: 'getPool',
-    outputs: [
-      {
-        components: [
-          {
-            internalType: 'address',
-            name: 'creator',
-            type: 'address',
-          },
-          {
-            internalType: 'uint256',
-            name: 'maxLiquidity',
-            type: 'uint256',
-          },
-          {
-            internalType: 'uint256',
-            name: 'currentLiquidity',
-            type: 'uint256',
-          },
-          {
-            internalType: 'uint256',
-            name: 'startTime',
-            type: 'uint256',
-          },
-          {
-            internalType: 'uint256',
-            name: 'finishTime',
-            type: 'uint256',
-          },
-          {
-            internalType: 'address[]',
-            name: 'contributorList',
-            type: 'address[]',
-          },
-        ],
-        internalType: 'struct poolANDwithdraw.Pool',
-        name: '',
-        type: 'tuple',
-      },
-    ],
-    stateMutability: 'view',
-    type: 'function',
-  },
-  {
-    inputs: [
-      {
-        internalType: 'uint256',
-        name: '_index',
-        type: 'uint256',
-      },
-    ],
-    name: 'getPoolFinish',
-    outputs: [
-      {
-        internalType: 'uint256',
-        name: '',
-        type: 'uint256',
-      },
-    ],
-    stateMutability: 'view',
-    type: 'function',
-  },
-  {
-    inputs: [
-      {
-        internalType: 'uint256',
-        name: '_index',
-        type: 'uint256',
-      },
-    ],
-    name: 'getPoolLiq',
+    inputs: [],
+    name: 'getPoolCount',
     outputs: [
       {
         internalType: 'uint256',
@@ -191,11 +93,6 @@ export const contractABI = [
             internalType: 'uint256',
             name: 'finishTime',
             type: 'uint256',
-          },
-          {
-            internalType: 'address[]',
-            name: 'contributorList',
-            type: 'address[]',
           },
         ],
         internalType: 'struct poolANDwithdraw.Pool',
@@ -209,6 +106,52 @@ export const contractABI = [
         internalType: 'bool',
         name: '',
         type: 'bool',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'uint256',
+        name: '_ind',
+        type: 'uint256',
+      },
+    ],
+    name: 'getPools',
+    outputs: [
+      {
+        components: [
+          {
+            internalType: 'address',
+            name: 'creator',
+            type: 'address',
+          },
+          {
+            internalType: 'uint256',
+            name: 'maxLiquidity',
+            type: 'uint256',
+          },
+          {
+            internalType: 'uint256',
+            name: 'currentLiquidity',
+            type: 'uint256',
+          },
+          {
+            internalType: 'uint256',
+            name: 'startTime',
+            type: 'uint256',
+          },
+          {
+            internalType: 'uint256',
+            name: 'finishTime',
+            type: 'uint256',
+          },
+        ],
+        internalType: 'struct poolANDwithdraw.Pool',
+        name: '',
+        type: 'tuple',
       },
     ],
     stateMutability: 'view',

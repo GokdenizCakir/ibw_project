@@ -21,18 +21,23 @@ export default function Home() {
           Help one another in acts of piety and righteousness.{' '}
         </div>
         {projects?.map((project, i) => (
-          <div key={i} className='rounded-2xl shadow-lg bg-[#9ad8ccef] p-12'>
-            <h2 className='text-4xl font-semibold mb-4'>{project.name}</h2>
-            <h2 className='mb-4 font-semibold'>
-              by:{' '}
-              {project?.publicKey?.slice(0, 4) +
-                '.....' +
-                project?.publicKey?.slice(-5, -1)}
-            </h2>
-            {project?.description?.slice(0, 100) + '...'}
+          <div
+            key={i}
+            className='rounded-2xl flex flex-col justify-between shadow-lg bg-[#9ad8ccef] p-12'
+          >
+            <div>
+              <h2 className='text-4xl font-semibold mb-4'>{project.name}</h2>
+              <h2 className='mb-4 font-semibold'>
+                by:{' '}
+                {project?.publicKey?.slice(0, 4) +
+                  '.....' +
+                  project?.publicKey?.slice(-5, -1)}
+              </h2>
+              {project?.description?.slice(0, 100) + '...'}
+            </div>
             <div className='flex mt-16 justify-end'>
               <Link
-                href={'/' + project?._id}
+                href={'/' + project?.incrementId}
                 className='flex items-center cursor-pointer rounded-md hover:opacity-90 justify-between px-4 text-white bg-customGreen h-12'
               >
                 <h2>Donate Now</h2>

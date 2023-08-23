@@ -1,9 +1,10 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { contractABI, contractAddress } from '../constant/constant';
+
+import { ethers } from 'ethers';
 import { useRecoilValue } from 'recoil';
 import { signerState } from '../_globalState/atom';
-import { ethers } from 'ethers';
 
 const page = () => {
   const [name, setName] = useState('');
@@ -13,12 +14,20 @@ const page = () => {
   const [instagram, setInstagram] = useState('');
   const [description, setDescription] = useState('');
   const [loading, setLoading] = useState(false);
-
   const signer = useRecoilValue(signerState);
 
   const handleClick = async () => {
     setLoading(true);
     try {
+      const contract = new ethers.Contract(
+        contractAddress,
+        contractABI,
+        signer
+      );
+
+      const tx = await contract.createPool();
+      await tx.wait();
+
       fetch('http://localhost:8000/api/v1/projects', {
         method: 'POST',
         headers: {
@@ -33,15 +42,6 @@ const page = () => {
           description,
         }),
       });
-
-      const contract = new ethers.Contract(
-        contractAddress,
-        contractABI,
-        signer
-      );
-
-      const tx = await contract.createPool(3000, 24 * 60 * 60);
-      await tx.wait();
 
       console.log(tx);
     } catch (error) {

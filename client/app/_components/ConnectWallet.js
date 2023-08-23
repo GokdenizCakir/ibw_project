@@ -33,7 +33,7 @@ const ConnectWalletButton = () => {
     <div>
       {account ? (
         <div className='p-2 bg-customGreen text-white rounded-md flex justify-center items-center'>
-          <p>Connected: {account.slice(0, 4) + '...' + account.slice(-4)}</p>
+          <p>Connected</p>
         </div>
       ) : (
         <button

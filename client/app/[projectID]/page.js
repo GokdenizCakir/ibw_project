@@ -24,9 +24,10 @@ const page = () => {
 
       // Sending a donation transaction with value in Ether
       const valueInEther = ethers.parseEther(number);
-      const tx = await contract.contribute(0, { value: valueInEther });
+      const tx = await contract.contribute(0, valueInEther, {
+        value: valueInEther,
+      });
       await tx.wait();
-
       // Handle success
       console.log('Donation successful!');
     } catch (error) {
@@ -46,8 +47,10 @@ const page = () => {
           signer
         );
 
-        const tx = await contract.getPool(0);
+        await contract.getPool(1);
         await tx.wait();
+
+        console.log(tx);
       } catch (error) {
         console.error('Error:', error);
       }

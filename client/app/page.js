@@ -17,6 +17,9 @@ export default function Home() {
   return (
     <div>
       <div className='grid pb-20 mt-12 px-16 gap-10 grid-cols-2'>
+        <div className='bg-white col-span-2 text-4xl text-customBlue shadow-lg border-2 border-customGreen rounded-2xl p-20'>
+          Help one another in acts of piety and righteousness.{' '}
+        </div>
         {projects?.map((project, i) => (
           <div key={i} className='rounded-2xl shadow-lg bg-[#9ad8ccef] p-12'>
             <h2 className='text-4xl font-semibold mb-4'>{project.name}</h2>
